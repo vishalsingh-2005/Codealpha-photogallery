@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>VividFrame | Premium Interactive Image Gallery</title>
+    <meta name="description" content="Explore a stunning, modern, and responsive image gallery featuring high-resolution photography, category filters, interactive search, slideshow player, and dark/light themes.">
+    <meta name="keywords" content="image gallery, photo gallery, lightbox, slideshow, portfolio, responsive web design, glassmorphism">
+    <meta name="author" content="Antigravity">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navigation -->
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo">
+                <span class="logo-icon">✨</span>
+                <h1>VividFrame</h1>
+            </div>
+            
+            <div class="header-controls">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark and light theme" title="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-main">
+        <!-- Interactive Controls (Search & Filters) -->
+        <section class="controls-section">
+            <div class="search-wrapper">
+                <div class="search-bar">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Search gallery by title or description..." aria-label="Search gallery">
+                    <button id="clear-search" class="clear-search-btn" aria-label="Clear search" title="Clear search">&times;</button>
+                </div>
+            </div>
+
+            <div class="filter-wrapper">
+                <div class="filter-buttons" role="group" aria-label="Filter gallery by category">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="nature">Nature</button>
+                    <button class="filter-btn" data-filter="city">City</button>
+                    <button class="filter-btn" data-filter="animals">Animals</button>
+                    <button class="filter-btn" data-filter="technology">Technology</button>
+                </div>
+            </div>
+            
+            <div id="gallery-status" class="gallery-status" aria-live="polite">Showing all items</div>
+        </section>
+
+        <!-- Gallery Grid -->
+        <section class="gallery-section">
+            <div class="gallery-grid" id="gallery-grid" role="region" aria-label="Image Grid">
+                
+                <!-- Nature 1 -->
+                <div class="gallery-item" data-category="nature" data-title="Majestic Mountain Sunset" data-desc="A beautiful mountain peak reflecting in a calm lake during a golden sunset." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Majestic Mountain Sunset">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Majestic Mountain Sunset - A beautiful mountain peak reflecting in a calm lake during a golden sunset." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3 class="image-title">Majestic Mountain Sunset</h3>
+                            <p class="image-desc">A beautiful mountain peak reflecting in a calm lake during a golden sunset.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature 2 -->
+                <div class="gallery-item" data-category="nature" data-title="Tropical Forest Waterfall" data-desc="A pristine waterfall cascading into a crystal clear turquoise pool." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Tropical Forest Waterfall">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?auto=format&fit=crop&w=800&q=80" alt="Tropical Forest Waterfall - A pristine waterfall cascading into a crystal clear turquoise pool." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3 class="image-title">Tropical Forest Waterfall</h3>
+                            <p class="image-desc">A pristine waterfall cascading into a crystal clear turquoise pool.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature 3 -->
+                <div class="gallery-item" data-category="nature" data-title="Mystic Redwood Path" data-desc="Sun rays filtering through tall trees onto a quiet path in a redwood forest." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Mystic Redwood Path">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80" alt="Mystic Redwood Path - Sun rays filtering through tall trees onto a quiet path in a redwood forest." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3 class="image-title">Mystic Redwood Path</h3>
+                            <p class="image-desc">Sun rays filtering through tall trees onto a quiet path in a redwood forest.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature 4 -->
+                <div class="gallery-item" data-category="nature" data-title="Sunlit Forest Canopy" data-desc="Vibrant green sunbeams filtering down through a tall forest canopy." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Sunlit Forest Canopy">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Sunlit Forest Canopy - Vibrant green sunbeams filtering down through a tall forest canopy." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3 class="image-title">Sunlit Forest Canopy</h3>
+                            <p class="image-desc">Vibrant green sunbeams filtering down through a tall forest canopy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nature 5 -->
+                <div class="gallery-item" data-category="nature" data-title="Mountain Ridge Landscape" data-desc="A majestic range of green hills under a bright clear sky." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Mountain Ridge Landscape">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80" alt="Mountain Ridge Landscape - A majestic range of green hills under a bright clear sky." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Nature</span>
+                            <h3 class="image-title">Mountain Ridge Landscape</h3>
+                            <p class="image-desc">A majestic range of green hills under a bright clear sky.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 1 -->
+                <div class="gallery-item" data-category="city" data-title="Cyberpunk City Lights" data-desc="A neon-drenched futuristic city skyline with dynamic light trails." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Cyberpunk City Lights">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=80" alt="Cyberpunk City Lights - A neon-drenched futuristic city skyline with dynamic light trails." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">City</span>
+                            <h3 class="image-title">Cyberpunk City Lights</h3>
+                            <p class="image-desc">A neon-drenched futuristic city skyline with dynamic light trails.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 2 -->
+                <div class="gallery-item" data-category="city" data-title="Charming European Street" data-desc="A quiet cobblestone alley with cafe tables and warm street lanterns." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Charming European Street">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Charming European Street - A quiet cobblestone alley with cafe tables and warm street lanterns." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">City</span>
+                            <h3 class="image-title">Charming European Street</h3>
+                            <p class="image-desc">A quiet cobblestone alley with cafe tables and warm street lanterns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 3 -->
+                <div class="gallery-item" data-category="city" data-title="Golden Gate Fog" data-desc="An aerial view of the famous suspension bridge emerging from morning fog." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Golden Gate Fog">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?auto=format&fit=crop&w=800&q=80" alt="Golden Gate Fog - An aerial view of the famous suspension bridge emerging from morning fog." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">City</span>
+                            <h3 class="image-title">Golden Gate Fog</h3>
+                            <p class="image-desc">An aerial view of the famous suspension bridge emerging from morning fog.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 4 -->
+                <div class="gallery-item" data-category="city" data-title="Neon Tokyo Street" data-desc="Vibrant neon signs illuminating a bustling wet Tokyo street at night." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Neon Tokyo Street">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=800&q=80" alt="Neon Tokyo Street - Vibrant neon signs illuminating a bustling wet Tokyo street at night." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">City</span>
+                            <h3 class="image-title">Neon Tokyo Street</h3>
+                            <p class="image-desc">Vibrant neon signs illuminating a bustling wet Tokyo street at night.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- City 5 -->
+                <div class="gallery-item" data-category="city" data-title="Eiffel Tower Twilight" data-desc="The iconic Eiffel Tower standing tall against a colorful sunset twilight sky." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Eiffel Tower Twilight">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80" alt="Eiffel Tower Twilight - The iconic Eiffel Tower standing tall against a colorful sunset twilight sky." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">City</span>
+                            <h3 class="image-title">Eiffel Tower Twilight</h3>
+                            <p class="image-desc">The iconic Eiffel Tower standing tall against a colorful sunset twilight sky.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animals 1 -->
+                <div class="gallery-item" data-category="animals" data-title="Majestic Lion Portrait" data-desc="A powerful close-up of a resting lion with a golden mane." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Majestic Lion Portrait">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800&q=80" alt="Majestic Lion Portrait - A powerful close-up of a resting lion with a golden mane." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Animals</span>
+                            <h3 class="image-title">Majestic Lion Portrait</h3>
+                            <p class="image-desc">A powerful close-up of a resting lion with a golden mane.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animals 2 -->
+                <div class="gallery-item" data-category="animals" data-title="Forest Deer" data-desc="A beautiful deer standing in a sun-dappled woodland clearing." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Forest Deer">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80" alt="Forest Deer - A beautiful deer standing in a sun-dappled woodland clearing." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Animals</span>
+                            <h3 class="image-title">Forest Deer</h3>
+                            <p class="image-desc">A beautiful deer standing in a sun-dappled woodland clearing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animals 3 -->
+                <div class="gallery-item" data-category="animals" data-title="Vibrant Rainforest Parrot" data-desc="A colorful parrot resting on a branch amidst tropical greenery." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Vibrant Rainforest Parrot">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?auto=format&fit=crop&w=800&q=80" alt="Vibrant Rainforest Parrot - A colorful parrot resting on a branch amidst tropical greenery." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Animals</span>
+                            <h3 class="image-title">Vibrant Rainforest Parrot</h3>
+                            <p class="image-desc">A colorful parrot resting on a branch amidst tropical greenery.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animals 4 -->
+                <div class="gallery-item" data-category="animals" data-title="Curious Red Fox" data-desc="A beautiful red fox with bright eyes looking curiously from a grassy field." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Curious Red Fox">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1484406566174-9da000fda645?auto=format&fit=crop&w=800&q=80" alt="Curious Red Fox - A beautiful red fox with bright eyes looking curiously from a grassy field." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Animals</span>
+                            <h3 class="image-title">Curious Red Fox</h3>
+                            <p class="image-desc">A beautiful red fox with bright eyes looking curiously from a grassy field.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animals 5 -->
+                <div class="gallery-item" data-category="animals" data-title="Monarch Butterfly" data-desc="A close-up of a majestic monarch butterfly resting on yellow flowers." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Monarch Butterfly">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80" alt="Monarch Butterfly - A close-up of a majestic monarch butterfly resting on yellow flowers." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Animals</span>
+                            <h3 class="image-title">Monarch Butterfly</h3>
+                            <p class="image-desc">A close-up of a majestic monarch butterfly resting on yellow flowers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech 1 -->
+                <div class="gallery-item" data-category="technology" data-title="Quantum Processor" data-desc="A close-up of a high-performance computer microchip circuit board." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Quantum Processor">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Quantum Processor - A close-up of a high-performance computer microchip circuit board." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Technology</span>
+                            <h3 class="image-title">Quantum Processor</h3>
+                            <p class="image-desc">A close-up of a high-performance computer microchip circuit board.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech 2 -->
+                <div class="gallery-item" data-category="technology" data-title="Secure Digital Network" data-desc="A padlock symbol representing cyber security and data protection." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Secure Digital Network">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Secure Digital Network - A padlock symbol representing cyber security and data protection." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Technology</span>
+                            <h3 class="image-title">Secure Digital Network</h3>
+                            <p class="image-desc">A padlock symbol representing cyber security and data protection.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech 3 -->
+                <div class="gallery-item" data-category="technology" data-title="Futuristic Tech Laptop" data-desc="A sleek laptop displaying abstract blue glowing interface diagrams." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Futuristic Tech Laptop">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80" alt="Futuristic Tech Laptop - A sleek laptop displaying abstract blue glowing interface diagrams." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Technology</span>
+                            <h3 class="image-title">Futuristic Tech Laptop</h3>
+                            <p class="image-desc">A sleek laptop displaying abstract blue glowing interface diagrams.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech 4 -->
+                <div class="gallery-item" data-category="technology" data-title="Digital Code Waterfall" data-desc="Matrix style glowing green digital computer code stream on black." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Digital Code Waterfall">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" alt="Digital Code Waterfall - Matrix style glowing green digital computer code stream on black." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Technology</span>
+                            <h3 class="image-title">Digital Code Waterfall</h3>
+                            <p class="image-desc">Matrix style glowing green digital computer code stream on black.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech 5 -->
+                <div class="gallery-item" data-category="technology" data-title="Robotic Arm Automation" data-desc="A sleek white high-tech robotic arm executing precise automated tasks." tabindex="0" role="button" aria-haspopup="dialog" aria-label="Open Robotic Arm Automation">
+                    <div class="image-container">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="Robotic Arm Automation - A sleek white high-tech robotic arm executing precise automated tasks." loading="lazy" class="gallery-img">
+                        <div class="overlay">
+                            <span class="category-tag">Technology</span>
+                            <h3 class="image-title">Robotic Arm Automation</h3>
+                            <p class="image-desc">A sleek white high-tech robotic arm executing precise automated tasks.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+        <p>&copy; 2026 VividFrame. Built with vanilla HTML, CSS, and JS. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Viewer" tabindex="-1">
+        
+        <!-- Backdrop Blur overlay -->
+        <div class="lightbox-overlay" id="lightbox-overlay"></div>
+
+        <!-- Main Lightbox Container -->
+        <div class="lightbox-content">
+            
+            <!-- Close Button -->
+            <button class="lightbox-close" id="lightbox-close" aria-label="Close Lightbox" title="Close (Esc)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Buttons -->
+            <button class="lightbox-nav-btn prev" id="lightbox-prev" aria-label="Previous Image" title="Previous (Left Arrow)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+
+            <button class="lightbox-nav-btn next" id="lightbox-next" aria-label="Next Image" title="Next (Right Arrow)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Slideshow Controls (Top Center) -->
+            <div class="slideshow-controls">
+                <button id="slideshow-play-pause" class="slideshow-btn" aria-label="Play Slideshow" title="Play Slideshow (Spacebar)">
+                    <!-- Play Icon -->
+                    <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <!-- Pause Icon -->
+                    <svg class="pause-icon hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+                <div class="slideshow-timer-track">
+                    <div id="slideshow-progress-bar" class="slideshow-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Main Image Wrapper -->
+            <div class="lightbox-image-wrapper">
+                <img id="lightbox-img" src="" alt="" class="lightbox-img">
+            </div>
+
+            <!-- Image Details and Information -->
+            <div class="lightbox-meta">
+                <div class="lightbox-meta-content">
+                    <div class="lightbox-meta-top">
+                        <span id="lightbox-category" class="category-tag">Category</span>
+                        <span id="lightbox-counter" class="lightbox-counter">0 / 0</span>
+                    </div>
+                    <h2 id="lightbox-title" class="lightbox-title">Image Title</h2>
+                    <p id="lightbox-desc" class="lightbox-desc">Detailed description of the image goes here.</p>
+                </div>
+            </div>
+
+            <!-- Bottom Thumbnail Navigation Strip -->
+            <div class="lightbox-thumbnails-container">
+                <div id="lightbox-thumbnails" class="lightbox-thumbnails" role="listbox" aria-label="Select image thumbnail">
+                    <!-- Thumbnails dynamically inserted via JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
